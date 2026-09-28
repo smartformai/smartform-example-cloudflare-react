@@ -95,7 +95,42 @@ npx wrangler pages deploy ./dist --project-name=smartform-react
 
 Set `VITE_SMARTFORM_FORM_ID` (and optional `SMARTFORM_ENDPOINT` / `SMARTFORM_FORM_ID`
 for the Pages Function) in the Cloudflare dashboard's environment variables.
+## Related examples
+[Cloudflare Workers proxy](https://github.com/yanghuai123456/smartform-example-serverless-cloudflare) | [Netlify contact form](https://github.com/yanghuai123456/smartform-example-netlify) | [Vite + React contact form](https://github.com/yanghuai123456/smartform-example-vite-react)
+
+
+## FAQ
+
+### Why use this instead of Formspree?
+
+Both SmartForm and Formspree let you POST a plain HTML form to a hosted
+endpoint with no backend. SmartForm adds an AI spam filter (not just
+honeypots), AI intent classification (`sales` / `support` / `inquiry`)
+and high-value lead detection, with a free tier that includes the spam
+filter. Formspree charges per submission; SmartForm's spam filter is
+free on every plan.
+
+### Is there a free tier?
+
+Yes. AI spam filtering is enabled by default on every plan. AI intent
+classification and high-value lead detection require a paid plan (Pro
+or Business) — the dashboard enforces this and returns HTTP 402 if
+you try to enable them on a free workspace.
+
+### Do I need an API key?
+
+No. The form posts directly to a public endpoint using only an 8-char
+form ID, which is non-enumerable. The example also includes a hidden
+`_gotcha` honeypot field so naive bots cannot submit.
+
+### Do I need a Pages Function?
+Not required. The plain HTML form posts directly to the endpoint. An optional Pages Function proxy is included if you want to keep the form ID out of the client bundle.
+
+## Related examples
+[Cloudflare Workers proxy](https://github.com/yanghuai123456/smartform-example-serverless-cloudflare) | [Netlify contact form](https://github.com/yanghuai123456/smartform-example-netlify) | [Vite + React contact form](https://github.com/yanghuai123456/smartform-example-vite-react)
+
 
 ## License
 
 MIT.
+
