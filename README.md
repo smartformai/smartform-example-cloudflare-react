@@ -1,4 +1,4 @@
-# SmartForm + Cloudflare Pages + React
+# Cloudflare Pages + React contact form — Formspree alternative with AI spam filtering
 
 A contact form for a Cloudflare Pages-hosted React app, posting JSON to SmartForm AI.
 
