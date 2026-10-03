@@ -1,4 +1,4 @@
-# Cloudflare Pages + React contact form â€” Formspree alternative with AI spam filtering
+# Cloudflare Pages + React contact form â€?Formspree alternative with AI spam filtering
 
 A contact form for a Cloudflare Pages-hosted React app, posting JSON to SmartForm AI.
 
@@ -7,11 +7,11 @@ A contact form for a Cloudflare Pages-hosted React app, posting JSON to SmartFor
 The endpoint accepts a standard HTML form POST or JSON via AJAX. Two
 kinds of fields:
 
-**Your form fields** â€” `name`, `email`, `message`, whatever you
+**Your form fields** â€?`name`, `email`, `message`, whatever you
 want. Every non-reserved field lands in your dashboard as a column in
 the submissions table.
 
-**Reserved fields** â€” names starting with `_` are interpreted by
+**Reserved fields** â€?names starting with `_` are interpreted by
 the API, not stored:
 
 | Field | Purpose |
@@ -22,7 +22,7 @@ the API, not stored:
 | ``_subject`` | Override the AI-generated email subject line. Max 200 chars; control characters stripped. |
 | `X-Gotcha` header | Same as `_gotcha` for JSON requests where you can't add a hidden form field. |
 
-Field names are Formspree-compatible â€” migrating from
+Field names are Formspree-compatible â€?migrating from
 `formspree.io/f/{form_id}` requires no renaming.
 
 ## Setup
@@ -30,18 +30,18 @@ Field names are Formspree-compatible â€” migrating from
 1. Get a form ID at https://usesmartform.com/dashboard.
 2. Clone, install, configure, run:
    ```bash
-   git clone https://github.com/yanghuai123456/smartform-example-cloudflare-react.git
+   git clone https://github.com/smartformai/smartform-example-cloudflare-react.git
    cd smartform-example-cloudflare-react
    npm install
    cp .env.example .env
-   # edit .env â†’ VITE_SMARTFORM_FORM_ID=f_your_real_id
+   # edit .env â†?VITE_SMARTFORM_FORM_ID=your_real_id
    npm run dev
    ```
 3. Open http://localhost:5173, submit, check your dashboard.
 
 ## The form
 
-`src/ContactForm.tsx` is identical to the Vite + React version â€” it's the same Vite app
+`src/ContactForm.tsx` is identical to the Vite + React version â€?it's the same Vite app
 configured with React. The only thing Cloudflare-specific here is the build target: Pages
 runs the built `./dist` as static assets + Pages Functions.
 
@@ -56,7 +56,7 @@ export function ContactForm() {
 
   async function onSubmit(e) {
     e.preventDefault();
-    setStatus('Sendingâ€¦');
+    setStatus('Sendingâ€?);
     const data = Object.fromEntries(new FormData(e.currentTarget));
     try {
       const r = await fetch(`${ENDPOINT}/${FORM_ID}`, {
@@ -104,7 +104,7 @@ Then the browser would call `POST /api/submit` instead of the SmartForm endpoint
 
 ## How the API works
 
-- `POST {endpoint}/api/v1/f/{form_id}` â€” JSON or form-data, no API key.
+- `POST {endpoint}/api/v1/f/{form_id}` â€?JSON or form-data, no API key.
 - Response: `{ success, message, submission_id, is_spam, intent, next_url }`.
 
 For the full contract, see https://usesmartform.com/docs.
@@ -126,7 +126,7 @@ for the Pages Function) in the Cloudflare dashboard's environment variables.
 
 Yes. AI spam filtering is enabled by default on every plan. AI intent
 classification and high-value lead detection require a paid plan (Pro
-or Business) â€” the dashboard enforces this and returns HTTP 402 if
+or Business) â€?the dashboard enforces this and returns HTTP 402 if
 you try to enable them on a free workspace.
 
 ### Do I need an API key?
@@ -139,7 +139,7 @@ form ID, which is non-enumerable. The example also includes a hidden
 Not required. The plain HTML form posts directly to the endpoint. An optional Pages Function proxy is included if you want to keep the form ID out of the client bundle.
 
 ## Related examples
-[Cloudflare Workers proxy](https://github.com/yanghuai123456/smartform-example-serverless-cloudflare) | [Netlify contact form](https://github.com/yanghuai123456/smartform-example-netlify) | [Vite + React contact form](https://github.com/yanghuai123456/smartform-example-vite-react)
+[Cloudflare Workers proxy](https://github.com/smartformai/smartform-example-serverless-cloudflare) | [Netlify contact form](https://github.com/smartformai/smartform-example-netlify) | [Vite + React contact form](https://github.com/smartformai/smartform-example-vite-react)
 
 
 ## License
